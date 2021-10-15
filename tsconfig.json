@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2020",
+    "rootDir": "./src",
+    "outDir": "./build/",
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
+      "ES7"
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -18,9 +21,19 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "removeComments": true,
+    "allowUnreachableCode": false,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "node_module",
+    "./build"
   ]
 }
