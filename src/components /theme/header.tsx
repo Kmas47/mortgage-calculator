@@ -1,14 +1,15 @@
-import { Avatar, Box, Theme, Typography } from "@mui/material";
+import { Avatar, Grid, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
+import React from "react";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     position: "sticky",
     top: 0,
     width: "100%",
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.common.white,
     height: 60,
-    color: theme.palette.common.white,
+    color: theme.palette.info.dark,
     [theme.breakpoints.up("sm")]: {
       height: 80,
     },
@@ -21,10 +22,17 @@ const useStyles = makeStyles((theme: Theme) => ({
 export const Header = () => {
   const classes = useStyles();
   return (
-    <Box className={classes.root} sx={{ p: 1 }}>
-      <Avatar alt="Company Logo">
-        <Typography>Logo</Typography>
-      </Avatar>
-    </Box>
+    <Grid container className={classes.root} sx={{ p: 1 }} alignItems="center">
+      <Grid item>
+        <Avatar alt="Company Logo">
+          <Typography color="info.dark" sx={{ fontWeight: 600 }}>
+            Logo
+          </Typography>
+        </Avatar>
+      </Grid>
+      <Grid item sx={{ m: "auto" }}>
+        <Typography sx={{ fontWeight: 600 }}>Mortgage Calculator</Typography>
+      </Grid>
+    </Grid>
   );
 };

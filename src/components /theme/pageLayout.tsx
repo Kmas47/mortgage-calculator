@@ -5,7 +5,9 @@ import React from "react";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     backgroundColor: theme.palette.background.default,
-    height: "100vh",
+    minHeight: "100vh",
+    height: '100%',
+    padding: 32
   },
 }));
 

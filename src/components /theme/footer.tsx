@@ -6,17 +6,17 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     height: 120,
     [theme.breakpoints.up("sm")]: {
-        height: 144,
-      }
+      height: 144,
+    },
   },
   topFooter: {
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.primary.dark,
     height: "100%",
   },
   bottomFooter: {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.common.white,
     height: "100%",
-    color: theme.palette.common.white,
+    color: theme.palette.info.dark,
   },
 }));
 
