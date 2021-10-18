@@ -24,8 +24,8 @@
     "jsx": "react-jsx",
     "removeComments": true,
     "allowUnreachableCode": false,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
     "noUnusedLocals": false,
     "noUnusedParameters": true
   },

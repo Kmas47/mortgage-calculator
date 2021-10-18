@@ -7,15 +7,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: "sticky",
     top: 0,
     width: "100%",
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.primary.dark,
     height: 60,
-    color: theme.palette.info.dark,
+    color: theme.palette.common.white,
     [theme.breakpoints.up("sm")]: {
       height: 80,
     },
     [theme.breakpoints.up("lg")]: {
       height: 60,
     },
+    zIndex: 999999999
   },
 }));
 
