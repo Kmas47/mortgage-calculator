@@ -3,7 +3,6 @@ import {
   InputAdornment,
   MenuItem,
   TextField,
-  Typography,
 } from "@mui/material";
 import React from "react";
 import { IPaymentPlan } from "../../@types/types";
@@ -14,6 +13,8 @@ import {
   PAYMENT_FREQUENCY,
   TERM,
 } from "../../utils /constants/constants";
+import { PAYMENT_AMOUNT_TOOLTIP, PAYMENT_PLAN_AMORTIZATION_TOOLTIP, PAYMENT_PLAN_FREQUENCY, PAYMENT_PLAN_INTEREST_RATE_TOOLTIP, PAYMENT_PLAN_TERM } from "../../utils /constants/tooltipConstant";
+import { InputTitle } from "./inputTitle";
 
 export const PaymentCalculator = (props: {
   paymentPlan: IPaymentPlan;
@@ -31,10 +32,10 @@ export const PaymentCalculator = (props: {
   return (
     <Grid container sx={{ p: 2 }}>
       <Grid container spacing={2} alignItems="center">
-        <Grid item md={6}>
-          {" "}
-          <Typography>Mortgage Amount:</Typography>
-        </Grid>
+        <InputTitle
+          toolTipTitle={PAYMENT_AMOUNT_TOOLTIP}
+          title="Mortgage Amount"
+        />
         <Grid item md={6}>
           <TextField
             type="number"
@@ -50,15 +51,15 @@ export const PaymentCalculator = (props: {
             size="small"
           />
         </Grid>
-        <Grid item md={6}>
-          {" "}
-          <Typography>Interest Rate:</Typography>
-        </Grid>
+        <InputTitle
+          toolTipTitle={PAYMENT_PLAN_INTEREST_RATE_TOOLTIP}
+          title="Interest Rate"
+        />
         <Grid item>
           <TextField
             type="number"
-            id="mortgage-amount"
-            aria-labelledby="mortgage amount"
+            id="interest-rate"
+            aria-labelledby="annual mortgage interest rate"
             value={paymentPlan.interestRate}
             onChange={handleChange(INTEREST_RATE, dispatch)}
             InputProps={{
@@ -67,16 +68,16 @@ export const PaymentCalculator = (props: {
             size="small"
           />
         </Grid>
-        <Grid item md={6}>
-          {" "}
-          <Typography>Amortization Period:</Typography>
-        </Grid>
+        <InputTitle
+          toolTipTitle={PAYMENT_PLAN_AMORTIZATION_TOOLTIP}
+          title="Amortization Period"
+        />
         <Grid item md={3}>
           <TextField
             select
             name="years"
-            id="mortgage-amount"
-            aria-labelledby="mortgage amount"
+            id="amortization-years"
+            aria-labelledby="mortgage amortization years"
             size="small"
             value={paymentPlan.amortizationPeriod.years}
             onChange={handleSelect(AMORTIZATION_PERIOD, dispatch)}
@@ -106,10 +107,10 @@ export const PaymentCalculator = (props: {
             ))}
           </TextField>
         </Grid>
-        <Grid item md={6} xs={6}>
-          {" "}
-          <Typography>Payment Frequency:</Typography>
-        </Grid>
+        <InputTitle
+          toolTipTitle={PAYMENT_PLAN_FREQUENCY}
+          title="Payment Frequency"
+        />
         <Grid item md={6} xs={6}>
           <TextField
             select
@@ -127,10 +128,10 @@ export const PaymentCalculator = (props: {
             ))}
           </TextField>
         </Grid>
-        <Grid item xs={6} md={6}>
-          {" "}
-          <Typography>Term:</Typography>
-        </Grid>
+        <InputTitle
+          toolTipTitle={PAYMENT_PLAN_TERM}
+          title="Term"
+        />
         <Grid item xs={6} md={6}>
           <TextField
             select

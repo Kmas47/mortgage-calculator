@@ -4,6 +4,7 @@ import { IPaymentPlan } from "../@types/types";
 import { BaseCard } from "../components /card/baseCard";
 import { PaymentCalculator } from "../components /form/paymentCalculator";
 import { PrepaymentForm } from "../components /form/prePaymentPlan";
+import { PageLayout } from "../components /theme/pageLayout";
 import { reducer } from "../context/reducers/reducers";
 import { AMORTIZATION_PERIOD } from "../utils /constants/constants";
 
@@ -56,36 +57,39 @@ export const MortgageCalculator = () => {
     });
   };
   return (
-    <Grid container>
-      <Grid container spacing={4} justifyContent="center">
-        <Grid item lg={6}>
-          <BaseCard
-            title="payment plan"
-            cardContent={() => (
-              <PaymentCalculator
-                paymentPlan={paymentPlan}
-                dispatch={dispatchPaymentPlan}
-                handleChange={handleChange}
-                handleSelect={handleSelect}
-              />
-            )}
-          />
+    <PageLayout>
+      <Grid container>
+        <Grid container spacing={4} justifyContent="center">
+          <Grid item lg={6}>
+            <BaseCard
+              title="payment plan"
+              cardContent={() => (
+                <PaymentCalculator
+                  paymentPlan={paymentPlan}
+                  dispatch={dispatchPaymentPlan}
+                  handleChange={handleChange}
+                  handleSelect={handleSelect}
+                />
+              )}
+            />
+          </Grid>
+          <Grid item lg={6}>
+            <BaseCard
+              title="Prepayment plan"
+              cardContent={() => (
+                <PrepaymentForm
+                  paymentPlan={paymentPlan}
+                  prePayment={prePayment}
+                  dispatch={dispatchPrepayment}
+                  handleSelect={handleSelect}
+                  handleChange={handleChange}
+                />
+              )}
+            />
+          </Grid>
         </Grid>
-        <Grid item lg={6}>
-          <BaseCard
-            title="Prepayment plan"
-            cardContent={() => (
-              <PrepaymentForm
-                paymentPlan={paymentPlan}
-                prePayment={prePayment}
-                dispatch={dispatchPrepayment}
-                handleSelect={handleSelect}
-                handleChange={handleChange}
-              />
-            )}
-          />
-        </Grid>
+        <Grid container>calc table</Grid>
       </Grid>
-    </Grid>
+    </PageLayout>
   );
 };

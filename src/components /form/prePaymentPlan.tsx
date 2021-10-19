@@ -1,32 +1,49 @@
-import {
-  Grid,
-  InputAdornment,
-  MenuItem,
-  TextField,
-  Typography,
-} from "@mui/material";
-import React from "react";
+import { Grid, InputAdornment, MenuItem, TextField } from "@mui/material";
+import React, { useState } from "react";
 import {
   PRE_PAYMENT_AMOUNT,
   PRE_PAYMENT_FREQUENCY,
   PRE_PAYMENT_START,
 } from "../../utils /constants/constants";
+import {
+  PRE_PAYMENT_AMOUNT_TOOLTIP,
+  PRE_PAYMENT_FREQUENCY_TOOLTIP,
+  PRE_PAYMENT_START_TOOLTIP,
+} from "../../utils /constants/tooltipConstant";
+import { InputTitle } from "./inputTitle";
+
+const prePaymentAmountErrorText =
+  "The prepayment amount must be less than the mortgage amount";
 
 export const PrepaymentForm = (props) => {
+  const [prePaymentAmountError, setPrePaymentAmountError] =
+    useState<boolean>(false);
   const { paymentPlan, prePayment, dispatch, handleChange, handleSelect } =
     props;
+
   const prePaymentFrequency = [
     { label: "One time", value: 1 },
     { label: "Each year", value: paymentPlan.amortizationPeriod.years },
   ];
 
+  const handleValidation = (type) => () => {
+    switch (type) {
+      case PRE_PAYMENT_AMOUNT:
+        if (paymentPlan.mortgageAmount < prePayment.prePaymentAmount)
+          setPrePaymentAmountError(true);
+        return;
+      default:
+        return false;
+    }
+  };
+
   return (
     <Grid container sx={{ p: 2 }}>
       <Grid container spacing={2} alignItems="center">
-        <Grid item md={6}>
-          {" "}
-          <Typography>Prepayment Amount:</Typography>
-        </Grid>
+        <InputTitle
+          toolTipTitle={PRE_PAYMENT_AMOUNT_TOOLTIP}
+          title="Prepayment Amount"
+        />
         <Grid item md={6}>
           <TextField
             type="number"
@@ -34,18 +51,22 @@ export const PrepaymentForm = (props) => {
             aria-labelledby="mortgage pre-payment amount"
             value={prePayment.prePaymentAmount}
             onChange={handleChange(PRE_PAYMENT_AMOUNT, dispatch)}
+            onBlur={handleValidation(PRE_PAYMENT_AMOUNT)}
+            error={prePaymentAmountError}
+            helperText={prePaymentAmountError ? prePaymentAmountErrorText : ""}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">$</InputAdornment>
               ),
             }}
             size="small"
+            sx={{ ".MuiFormHelperText-root": { mx: 0 } }}
           />
         </Grid>
-        <Grid item md={6}>
-          {" "}
-          <Typography>Prepayment Frequency:</Typography>
-        </Grid>
+        <InputTitle
+          toolTipTitle={PRE_PAYMENT_FREQUENCY_TOOLTIP}
+          title="Prepayment Frequency"
+        />
         <Grid item md={3}>
           <TextField
             select
@@ -54,6 +75,7 @@ export const PrepaymentForm = (props) => {
             size="small"
             value={prePayment.prePaymentFrequency.value}
             onChange={handleSelect(PRE_PAYMENT_FREQUENCY, dispatch)}
+            onBlur={handleValidation}
           >
             {prePaymentFrequency.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -62,15 +84,15 @@ export const PrepaymentForm = (props) => {
             ))}
           </TextField>
         </Grid>
-        <Grid item md={6}>
-          {" "}
-          <Typography>Start With Payment:</Typography>
-        </Grid>
+        <InputTitle
+          toolTipTitle={PRE_PAYMENT_START_TOOLTIP}
+          title="Start With Payment"
+        />
         <Grid item>
           <TextField
             type="number"
-            id="mortgage-amount"
-            aria-labelledby="mortgage amount"
+            id="start-prepayment-plan"
+            aria-labelledby="start pre-payment plan"
             size="small"
             value={prePayment.prePaymentStart}
             onChange={handleChange(PRE_PAYMENT_START, dispatch)}
