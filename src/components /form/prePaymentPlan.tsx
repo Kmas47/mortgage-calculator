@@ -10,7 +10,8 @@ import {
   PRE_PAYMENT_FREQUENCY_TOOLTIP,
   PRE_PAYMENT_START_TOOLTIP,
 } from "../../utils /constants/tooltipConstant";
-import { InputTitle } from "./inputTitle";
+import { numAmortizationPeriod } from "../../utils /helpers/calculationHelpers";
+import { ToolTipLabel } from "../tooltip/tooltipLabel";
 
 const prePaymentAmountErrorText =
   "The prepayment amount must be less than the mortgage amount";
@@ -21,16 +22,27 @@ export const PrepaymentForm = (props) => {
   const { paymentPlan, prePayment, dispatch, handleChange, handleSelect } =
     props;
 
+  const totalPayments: number = numAmortizationPeriod(
+    paymentPlan.amortizationPeriod,
+    paymentPlan.paymentFrequency.value
+  );
+  const paymentFrequencyValue =
+    totalPayments / paymentPlan.paymentFrequency.value;
+
   const prePaymentFrequency = [
     { label: "One time", value: 1 },
-    { label: "Each year", value: paymentPlan.amortizationPeriod.years },
+    { label: "Each year", value: paymentFrequencyValue },
   ];
 
   const handleValidation = (type) => () => {
     switch (type) {
       case PRE_PAYMENT_AMOUNT:
-        if (paymentPlan.mortgageAmount < prePayment.prePaymentAmount)
+        if (
+          parseInt(paymentPlan.mortgageAmount) <=
+          parseInt(prePayment.prePaymentAmount)
+        ) {
           setPrePaymentAmountError(true);
+        } else setPrePaymentAmountError(false);
         return;
       default:
         return false;
@@ -40,9 +52,9 @@ export const PrepaymentForm = (props) => {
   return (
     <Grid container sx={{ p: 2 }}>
       <Grid container spacing={2} alignItems="center">
-        <InputTitle
+        <ToolTipLabel
           toolTipTitle={PRE_PAYMENT_AMOUNT_TOOLTIP}
-          title="Prepayment Amount"
+          title="Prepayment Amount:"
         />
         <Grid item md={6}>
           <TextField
@@ -63,9 +75,9 @@ export const PrepaymentForm = (props) => {
             sx={{ ".MuiFormHelperText-root": { mx: 0 } }}
           />
         </Grid>
-        <InputTitle
+        <ToolTipLabel
           toolTipTitle={PRE_PAYMENT_FREQUENCY_TOOLTIP}
-          title="Prepayment Frequency"
+          title="Prepayment Frequency:"
         />
         <Grid item md={3}>
           <TextField
@@ -78,15 +90,15 @@ export const PrepaymentForm = (props) => {
             onBlur={handleValidation}
           >
             {prePaymentFrequency.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem key={option.label} value={option.value}>
                 {option.label}
               </MenuItem>
             ))}
           </TextField>
         </Grid>
-        <InputTitle
+        <ToolTipLabel
           toolTipTitle={PRE_PAYMENT_START_TOOLTIP}
-          title="Start With Payment"
+          title="Start With Payment:"
         />
         <Grid item>
           <TextField

@@ -1,11 +1,11 @@
-type IAmortizationPeriod = {
+export type IAmortizationPeriod = {
   years: number;
   months: number;
 };
 
 type IPaymentFrequency = {
   label: string;
-  value: string;
+  value: number;
 };
 
 export type IPaymentPlan = {

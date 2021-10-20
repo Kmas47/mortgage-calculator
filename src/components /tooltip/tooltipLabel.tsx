@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
-import { MortgageCalculatorToolTip } from "../tooltip/mortgageCalculatorToolTip";
+import { CustomToolTip } from "./customToolTip";
 
 const useGlobalStyles = makeStyles(() => ({
   toolTipContainer: {
@@ -9,15 +9,15 @@ const useGlobalStyles = makeStyles(() => ({
   },
 }));
 
-export const InputTitle = (props) => {
+export const ToolTipLabel = (props) => {
   const globaleClasses = useGlobalStyles();
   const { toolTipTitle, title } = props;
   return (
     <Grid className={globaleClasses.toolTipContainer} item md={6}>
       <Grid container alignItems="center">
-        <MortgageCalculatorToolTip title={toolTipTitle} />
+        <CustomToolTip title={toolTipTitle} />
         <Grid item>
-          <Typography>{title}:</Typography>
+          <Typography>{title}</Typography>
         </Grid>
       </Grid>
     </Grid>

@@ -1,9 +1,4 @@
-import {
-  Grid,
-  InputAdornment,
-  MenuItem,
-  TextField,
-} from "@mui/material";
+import { Grid, InputAdornment, MenuItem, TextField } from "@mui/material";
 import React from "react";
 import { IPaymentPlan } from "../../@types/types";
 import {
@@ -13,8 +8,14 @@ import {
   PAYMENT_FREQUENCY,
   TERM,
 } from "../../utils /constants/constants";
-import { PAYMENT_AMOUNT_TOOLTIP, PAYMENT_PLAN_AMORTIZATION_TOOLTIP, PAYMENT_PLAN_FREQUENCY, PAYMENT_PLAN_INTEREST_RATE_TOOLTIP, PAYMENT_PLAN_TERM } from "../../utils /constants/tooltipConstant";
-import { InputTitle } from "./inputTitle";
+import {
+  PAYMENT_AMOUNT_TOOLTIP,
+  PAYMENT_PLAN_AMORTIZATION_TOOLTIP,
+  PAYMENT_PLAN_FREQUENCY,
+  PAYMENT_PLAN_INTEREST_RATE_TOOLTIP,
+  PAYMENT_PLAN_TERM,
+} from "../../utils /constants/tooltipConstant";
+import { ToolTipLabel } from "../tooltip/tooltipLabel";
 
 export const PaymentCalculator = (props: {
   paymentPlan: IPaymentPlan;
@@ -24,17 +25,17 @@ export const PaymentCalculator = (props: {
 }) => {
   const { paymentPlan, dispatch, handleChange, handleSelect } = props;
   const paymentFrequency = [
-    { label: "Weekly", value: "5" },
-    { label: "Bi-Weekly", value: "26" },
-    { label: "Monthly", value: "52" },
+    { label: "Weekly", value: 52 },
+    { label: "Bi-Weekly", value: 26 },
+    { label: "Monthly", value: 12 },
   ];
 
   return (
     <Grid container sx={{ p: 2 }}>
       <Grid container spacing={2} alignItems="center">
-        <InputTitle
+        <ToolTipLabel
           toolTipTitle={PAYMENT_AMOUNT_TOOLTIP}
-          title="Mortgage Amount"
+          title="Mortgage Amount:"
         />
         <Grid item md={6}>
           <TextField
@@ -51,9 +52,9 @@ export const PaymentCalculator = (props: {
             size="small"
           />
         </Grid>
-        <InputTitle
+        <ToolTipLabel
           toolTipTitle={PAYMENT_PLAN_INTEREST_RATE_TOOLTIP}
-          title="Interest Rate"
+          title="Interest Rate:"
         />
         <Grid item>
           <TextField
@@ -68,9 +69,9 @@ export const PaymentCalculator = (props: {
             size="small"
           />
         </Grid>
-        <InputTitle
+        <ToolTipLabel
           toolTipTitle={PAYMENT_PLAN_AMORTIZATION_TOOLTIP}
-          title="Amortization Period"
+          title="Amortization Period:"
         />
         <Grid item md={3}>
           <TextField
@@ -100,16 +101,16 @@ export const PaymentCalculator = (props: {
             value={paymentPlan.amortizationPeriod.months}
             onChange={handleSelect(AMORTIZATION_PERIOD, dispatch)}
           >
-            {[...Array(13).keys()].map((i) => (
+            {[...Array(12).keys()].map((i) => (
               <MenuItem key={i} value={i}>
                 {i} months
               </MenuItem>
             ))}
           </TextField>
         </Grid>
-        <InputTitle
+        <ToolTipLabel
           toolTipTitle={PAYMENT_PLAN_FREQUENCY}
-          title="Payment Frequency"
+          title="Payment Frequency:"
         />
         <Grid item md={6} xs={6}>
           <TextField
@@ -128,10 +129,7 @@ export const PaymentCalculator = (props: {
             ))}
           </TextField>
         </Grid>
-        <InputTitle
-          toolTipTitle={PAYMENT_PLAN_TERM}
-          title="Term"
-        />
+        <ToolTipLabel toolTipTitle={PAYMENT_PLAN_TERM} title="Term:" />
         <Grid item xs={6} md={6}>
           <TextField
             select

@@ -6,3 +6,5 @@ export const AMORTIZATION_PERIOD = "amortizationPeriod";
 export const PRE_PAYMENT_AMOUNT = "prePaymentAmount";
 export const PRE_PAYMENT_FREQUENCY = "prePaymentFrequency";
 export const PRE_PAYMENT_START = "prePaymentStart";
+export const numOfMonths = 12;
+

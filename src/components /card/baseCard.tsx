@@ -2,30 +2,39 @@ import { Card, CardContent, Grid, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    maxWidth: 600,
-  },
+type IStyleProps = {
+  titleDirection: string
+}
+
+const useStyles = makeStyles<Theme, IStyleProps>((theme: Theme) => ({
   titleContainer: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
     padding: "12px 16px",
     "& p": {
-      fontWeight: 540,
+      fontWeight: 600,
+      textAlign: (props) => props.titleDirection 
     },
   },
 }));
 
-export const BaseCard = (props: { title: any; cardContent: any }) => {
-  const { title, cardContent } = props;
-  const classes = useStyles();
+type IBaseCardProps = {
+  title: string;
+  cardContent: Function;
+  cardWidth: number | string;
+  titleDirection: string;
+}
+
+export const BaseCard = (props: IBaseCardProps) => {
+  const { title, cardContent, cardWidth, titleDirection } = props;
+  const classes = useStyles({titleDirection});
   return (
-    <Card className={classes.root}>
+    <Card sx={{maxWidth: cardWidth, width: '100%'}}>
       <Grid container direction="row">
         <Grid item xs={12} className={classes.titleContainer}>
           <Typography>{title}</Typography>
         </Grid>
-        <CardContent>{cardContent && cardContent()}</CardContent>
+        <CardContent sx={{width: '100%'}}>{cardContent && cardContent()}</CardContent>
       </Grid>
     </Card>
   );
