@@ -9,6 +9,15 @@ import { PageLayout } from "../components /theme/pageLayout";
 import { reducer } from "../context/reducers/reducers";
 import { AMORTIZATION_PERIOD } from "../utils /constants/constants";
 import {
+  calculateDownPayment,
+  calculatePrinciple,
+  calculateRoi,
+  calculateTermInterestPayment,
+  calculateTermPrePayment,
+  calculateTermPrincipleAmount,
+  calculateTermTotalPayableAmount,
+  calculateTotalAmountPayable,
+  calculateTotalInterestPayment,
   numAmortizationPeriod,
   paymentsCalculation,
 } from "../utils /helpers/calculationHelpers";
@@ -68,18 +77,46 @@ export const MortgageCalculator = () => {
     paymentPlan.amortizationPeriod,
     paymentPlan.paymentFrequency.value
   );
-  const downPayment =
-    parseInt(prePayment.prePaymentAmount) *
-    prePayment.prePaymentFrequency.value;
+  const downPayment = calculateDownPayment(
+    parseInt(prePayment.prePaymentAmount),
+    prePayment.prePaymentFrequency.value
+  );
   const mortgageAmount = parseInt(paymentPlan.mortgageAmount);
-  const principle = mortgageAmount - downPayment;
-  const roi = parseInt(paymentPlan.interestRate) / 100;
-  const paymentFrequency = paymentPlan.paymentFrequency.value;
-  const payments = paymentsCalculation(roi, paymentFrequency, principle);
-  const totalAmountPayable = payments * totalPayments;
-  const totalInterestPayment = totalAmountPayable - principle;
-  const termPrePayment = downPayment / paymentPlan.term;
-  const termTotalPayableAmount = payments * term;
+  const principle = calculatePrinciple(mortgageAmount, downPayment);
+  const roi = calculateRoi(parseInt(paymentPlan.interestRate));
+  const paymentFrequency: number = paymentPlan.paymentFrequency.value;
+  const payments = paymentsCalculation(
+    roi,
+    paymentFrequency,
+    principle,
+    totalPayments
+  );
+  const totalAmountPayable = calculateTotalAmountPayable(
+    payments,
+    totalPayments
+  );
+  const totalInterestPayment = calculateTotalInterestPayment(
+    totalAmountPayable,
+    principle
+  );
+  const termPrePayment = calculateTermPrePayment(
+    prePayment.prePaymentFrequency.value,
+    downPayment,
+    term
+  );
+  const termTotalPayableAmount = calculateTermTotalPayableAmount(
+    payments,
+    term
+  );
+  const termInterestPayment = calculateTermInterestPayment(
+    term,
+    totalInterestPayment,
+    totalPayments
+  );
+  const termPrincipleAmount = calculateTermPrincipleAmount(
+    termTotalPayableAmount,
+    termInterestPayment
+  );
 
   return (
     <PageLayout>
@@ -129,7 +166,9 @@ export const MortgageCalculator = () => {
                 payments={payments}
                 termPrePayment={termPrePayment}
                 downPayment={downPayment}
+                termPrincipleAmount={termPrincipleAmount}
                 principle={principle}
+                termInterestPayment={termInterestPayment}
                 totalInterestPayment={totalInterestPayment}
                 termTotalPayableAmount={termTotalPayableAmount}
                 totalAmountPayable={totalAmountPayable}

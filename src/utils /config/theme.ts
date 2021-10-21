@@ -21,11 +21,7 @@ export const theme: Theme = createTheme({
     background: {
       default: "#fafafa",
     },
-    text: {
-      primary: "#333",
-      secondary: "#332200",
-      disabled: "#eeeeee",
-    },
+
     info: {
       main: "#ffff",
       dark: "#284168",

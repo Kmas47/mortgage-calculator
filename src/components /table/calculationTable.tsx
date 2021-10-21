@@ -19,7 +19,9 @@ export const MortgageCalculationTable = (props) => {
     payments,
     termPrePayment,
     downPayment,
+    termPrincipleAmount,
     principle,
+    termInterestPayment,
     totalInterestPayment,
     termTotalPayableAmount,
     totalAmountPayable,
@@ -46,13 +48,13 @@ export const MortgageCalculationTable = (props) => {
     {
       title: "Principal Payments",
       tooltip: "234",
-      term: "123",
+      term: currencyFormatter(termPrincipleAmount),
       amortizationPeriod: currencyFormatter(principle),
     },
     {
       title: "Interest Payments",
       tooltip: "234",
-      term: "123",
+      term: currencyFormatter(termInterestPayment),
       amortizationPeriod: currencyFormatter(totalInterestPayment),
     },
     {
@@ -64,7 +66,7 @@ export const MortgageCalculationTable = (props) => {
   ];
   return (
     <Grid item xs={12}>
-      <TableContainer sx={{ py: 2, width: "100%" }}>
+      <TableContainer sx={{ width: "100%" }}>
         <Table stickyHeader>
           <TableHead>
             <TableRow>
