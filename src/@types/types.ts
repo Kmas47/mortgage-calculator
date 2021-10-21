@@ -15,3 +15,17 @@ export type IPaymentPlan = {
   paymentFrequency: IPaymentFrequency;
   term: number;
 };
+
+export type ICalculationTableProps = {
+  term: number;
+  totalPayments: number;
+  payments: number;
+  termPrePayment: number;
+  downPayment: number;
+  termPrincipalAmount: number;
+  principal: number;
+  termInterestPayment: number;
+  totalInterestPayment: number;
+  termTotalPayableAmount: number;
+  totalAmountPayable: number;
+};

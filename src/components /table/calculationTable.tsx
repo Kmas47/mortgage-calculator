@@ -9,6 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import { ICalculationTableProps } from "../../@types/types";
 import {
   INTEREST_PAYMENTS,
   MORTGAGE_PAYMENT,
@@ -33,7 +34,7 @@ export const MortgageCalculationTable = (props) => {
     totalInterestPayment,
     termTotalPayableAmount,
     totalAmountPayable,
-  } = props;
+  }: ICalculationTableProps = props;
 
   const tableHeader = ["Category", "Term", "Amortization Period"];
 
