@@ -13,3 +13,15 @@ export const PAYMENT_PLAN_AMORTIZATION_TOOLTIP =
 export const PAYMENT_PLAN_FREQUENCY =
   "By choosing an accelerated payment frequency, you can reduce your amortization period and save thousands of dollars in interest in the long run. For example, the accelerated bi-weekly payment allows you to pay half of your monthly payment every two weeks. You will therefore make 26 payments a year, the equivalent of one extra monthly payment a year.";
 export const PAYMENT_PLAN_TERM = "The number of term years.";
+export const NUMBER_OF_PAYMENTS =
+  "The number of payments made during the Term and Amoritization period respectively.";
+export const MORTGAGE_PAYMENT =
+  "The amount you will pay per period during the Term and Amoritization respectively, which include a portion for the principal payment and a portion for the interest payment.";
+export const PREPAYMENT =
+  "The amount of prepayment made during the Term and Amoritization period respectively.";
+export const PRINCIPAL_PAYMENTS =
+  "The total amount of principal payment made during the Term and Amoritization period respectively.";
+export const INTEREST_PAYMENTS =
+  "Total of all interest paid during the Term and Amoritization period respectively, assuming that the conditions of your loan (e.g. interest rate, amortization period, term, etc.) will not change during these periods. This total interest amount also assumes that there are no prepayments of principal.";
+export const TOTAL_COST =
+  "Total of all payments made during the Term and Amoritization period respectively, assuming that the conditions of your loan (e.g. interest rate, amortization period, term, etc.) will not change during these periods. It is also assumed that there are no prepayments of principal.";

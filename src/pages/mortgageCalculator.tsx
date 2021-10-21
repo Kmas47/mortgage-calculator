@@ -10,11 +10,11 @@ import { reducer } from "../context/reducers/reducers";
 import { AMORTIZATION_PERIOD } from "../utils /constants/constants";
 import {
   calculateDownPayment,
-  calculatePrinciple,
+  calculatePrincipal,
   calculateRoi,
   calculateTermInterestPayment,
   calculateTermPrePayment,
-  calculateTermPrincipleAmount,
+  calculateTermPrincipalAmount,
   calculateTermTotalPayableAmount,
   calculateTotalAmountPayable,
   calculateTotalInterestPayment,
@@ -82,13 +82,13 @@ export const MortgageCalculator = () => {
     prePayment.prePaymentFrequency.value
   );
   const mortgageAmount = parseInt(paymentPlan.mortgageAmount);
-  const principle = calculatePrinciple(mortgageAmount, downPayment);
+  const principal = calculatePrincipal(mortgageAmount, downPayment);
   const roi = calculateRoi(parseInt(paymentPlan.interestRate));
   const paymentFrequency: number = paymentPlan.paymentFrequency.value;
   const payments = paymentsCalculation(
     roi,
     paymentFrequency,
-    principle,
+    principal,
     totalPayments
   );
   const totalAmountPayable = calculateTotalAmountPayable(
@@ -97,7 +97,7 @@ export const MortgageCalculator = () => {
   );
   const totalInterestPayment = calculateTotalInterestPayment(
     totalAmountPayable,
-    principle
+    principal
   );
   const termPrePayment = calculateTermPrePayment(
     prePayment.prePaymentFrequency.value,
@@ -114,7 +114,7 @@ export const MortgageCalculator = () => {
     totalInterestPayment,
     totalPayments
   );
-  const termPrincipleAmount = calculateTermPrincipleAmount(
+  const termPrincipalAmount = calculateTermPrincipalAmount(
     termTotalPayableAmount,
     termInterestPayment
   );
@@ -167,8 +167,8 @@ export const MortgageCalculator = () => {
                 payments={payments}
                 termPrePayment={termPrePayment}
                 downPayment={downPayment}
-                termPrincipleAmount={termPrincipleAmount}
-                principle={principle}
+                termPrincipalAmount={termPrincipalAmount}
+                principal={principal}
                 termInterestPayment={termInterestPayment}
                 totalInterestPayment={totalInterestPayment}
                 termTotalPayableAmount={termTotalPayableAmount}

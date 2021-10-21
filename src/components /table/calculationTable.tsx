@@ -9,6 +9,14 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import {
+  INTEREST_PAYMENTS,
+  MORTGAGE_PAYMENT,
+  NUMBER_OF_PAYMENTS,
+  PREPAYMENT,
+  PRINCIPAL_PAYMENTS,
+  TOTAL_COST,
+} from "../../utils /constants/tooltipConstant";
 import { currencyFormatter } from "../../utils /helpers/numberFormatter";
 import { ToolTipLabel } from "../tooltip/tooltipLabel";
 
@@ -19,66 +27,66 @@ export const MortgageCalculationTable = (props) => {
     payments,
     termPrePayment,
     downPayment,
-    termPrincipleAmount,
-    principle,
+    termPrincipalAmount,
+    principal,
     termInterestPayment,
     totalInterestPayment,
     termTotalPayableAmount,
     totalAmountPayable,
   } = props;
+
+  const tableHeader = ["Category", "Term", "Amortization Period"];
+
   const tableBody = [
     {
       title: "Number of Payments",
-      tooltip: "234",
+      tooltip: NUMBER_OF_PAYMENTS,
       term: term,
       amortizationPeriod: totalPayments,
     },
     {
       title: "Mortgage Payment",
-      tooltip: "234",
+      tooltip: MORTGAGE_PAYMENT,
       term: currencyFormatter(payments),
       amortizationPeriod: currencyFormatter(payments),
     },
     {
       title: "Prepayment",
-      tooltip: "234",
+      tooltip: PREPAYMENT,
       term: currencyFormatter(termPrePayment),
       amortizationPeriod: currencyFormatter(downPayment),
     },
     {
       title: "Principal Payments",
-      tooltip: "234",
-      term: currencyFormatter(termPrincipleAmount),
-      amortizationPeriod: currencyFormatter(principle),
+      tooltip: PRINCIPAL_PAYMENTS,
+      term: currencyFormatter(termPrincipalAmount),
+      amortizationPeriod: currencyFormatter(principal),
     },
     {
       title: "Interest Payments",
-      tooltip: "234",
+      tooltip: INTEREST_PAYMENTS,
       term: currencyFormatter(termInterestPayment),
       amortizationPeriod: currencyFormatter(totalInterestPayment),
     },
     {
       title: "Total Cost",
-      tooltip: "234",
+      tooltip: TOTAL_COST,
       term: currencyFormatter(termTotalPayableAmount),
       amortizationPeriod: currencyFormatter(totalAmountPayable),
     },
   ];
+
   return (
     <Grid item xs={12}>
       <TableContainer sx={{ width: "100%" }}>
-        <Table stickyHeader>
+        <Table stickyHeader aria-label="Calculation Table">
           <TableHead>
             <TableRow>
-              <TableCell>
-                <Typography>Category</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography>Term</Typography>
-              </TableCell>
-              <TableCell>
-                <Typography>Amortization Period</Typography>
-              </TableCell>
+              {tableHeader.map((title) => (
+                <TableCell key={title}>
+                  <Typography>{title}</Typography>
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>

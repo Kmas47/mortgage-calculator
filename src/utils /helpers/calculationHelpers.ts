@@ -18,14 +18,14 @@ export const numAmortizationPeriod = (
 export const paymentsCalculation = (
   roi: number,
   paymentFrequency: number,
-  principle: number,
+  principal: number,
   totalPayments: number
 ) => {
   const value1 = roi / paymentFrequency;
   const v = 1 + value1;
   const value2 = Math.pow(v, totalPayments);
   const value3 = Math.pow(v, totalPayments) - 1;
-  const payment = (principle * value1 * value2) / value3;
+  const payment = (principal * value1 * value2) / value3;
   return payment;
 };
 
@@ -36,7 +36,7 @@ export const calculateDownPayment = (
   return prePaymentAmount * prePaymentFrequency;
 };
 
-export const calculatePrinciple = (
+export const calculatePrincipal = (
   mortgageAmount: number,
   downPayment: number
 ) => {
@@ -56,9 +56,9 @@ export const calculateTotalAmountPayable = (
 
 export const calculateTotalInterestPayment = (
   totalAmountPayable: number,
-  principle: number
+  principal: number
 ) => {
-  return totalAmountPayable - principle;
+  return totalAmountPayable - principal;
 };
 
 export const calculateTermPrePayment = (
@@ -90,7 +90,7 @@ export const calculateTermInterestPayment = (
   return (term * totalInterestPayment) / totalPayments;
 };
 
-export const calculateTermPrincipleAmount = (
+export const calculateTermPrincipalAmount = (
   termTotalPayableAmount: number,
   termInterestPayment: number
 ) => {
