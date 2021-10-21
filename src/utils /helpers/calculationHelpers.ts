@@ -64,9 +64,14 @@ export const calculateTotalInterestPayment = (
 export const calculateTermPrePayment = (
   prePaymentFrequency: number,
   downPayment: number,
-  term: number
+  term: number,
+  paymentFrequency: number
 ) => {
-  const value = prePaymentFrequency === 1 ? downPayment : downPayment / term;
+  const value =
+    prePaymentFrequency === 1
+      ? downPayment
+      : downPayment / (term / paymentFrequency);
+
   return value;
 };
 

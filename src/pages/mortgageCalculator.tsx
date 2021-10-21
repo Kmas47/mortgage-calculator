@@ -102,7 +102,8 @@ export const MortgageCalculator = () => {
   const termPrePayment = calculateTermPrePayment(
     prePayment.prePaymentFrequency.value,
     downPayment,
-    term
+    term,
+    paymentPlan.paymentFrequency.value
   );
   const termTotalPayableAmount = calculateTermTotalPayableAmount(
     payments,
