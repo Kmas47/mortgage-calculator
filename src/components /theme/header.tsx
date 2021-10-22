@@ -37,7 +37,11 @@ export const Header = () => {
         <Typography sx={{ fontWeight: 600 }}>Mortgage Calculator</Typography>
       </Grid>
       <Grid item>
-        <IconButton onClick={handleClick}>
+        <IconButton
+          id="theme-toggle"
+          aria-label="Change theme mode"
+          onClick={handleClick}
+        >
           <Brightness6OutlinedIcon />
         </IconButton>
       </Grid>
