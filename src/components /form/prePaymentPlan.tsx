@@ -60,7 +60,7 @@ export const PrepaymentForm = (props) => {
           <TextField
             type="number"
             id="mortgage-pre-payment-amount"
-            aria-labelledby="mortgage pre-payment amount"
+            aria-label="mortgage pre-payment amount"
             value={prePayment.prePaymentAmount}
             onChange={handleChange(PRE_PAYMENT_AMOUNT, dispatch)}
             onBlur={handleValidation(PRE_PAYMENT_AMOUNT)}
@@ -83,7 +83,7 @@ export const PrepaymentForm = (props) => {
           <TextField
             select
             id="mortgage-pre-payment-frequency"
-            aria-labelledby="mortgage pre-payment frequency"
+            aria-label="mortgage pre-payment frequency"
             size="small"
             value={prePayment.prePaymentFrequency.value}
             onChange={handleSelect(PRE_PAYMENT_FREQUENCY, dispatch)}
@@ -104,7 +104,7 @@ export const PrepaymentForm = (props) => {
           <TextField
             type="number"
             id="start-prepayment-plan"
-            aria-labelledby="start pre-payment plan"
+            aria-label="start pre-payment plan"
             size="small"
             value={prePayment.prePaymentStart}
             onChange={handleChange(PRE_PAYMENT_START, dispatch)}
