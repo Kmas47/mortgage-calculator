@@ -10,28 +10,29 @@ import {
 } from "../../utils /constants/constants";
 
 export const reducer = (state, action) => {
-  switch (action.type) {
+  const { type, payload } = action;
+  switch (type) {
     case MORTGAGE_AMOUNT:
     case INTEREST_RATE:
     case TERM:
     case PRE_PAYMENT_AMOUNT:
     case PRE_PAYMENT_FREQUENCY:
     case PRE_PAYMENT_START:
-      return { ...state, [action.type]: action.payload };
+      return { ...state, [type]: payload };
     case PAYMENT_FREQUENCY:
       return {
         ...state,
-        [action.type]: {
-          label: action.payload.label,
-          value: action.payload.value,
+        [type]: {
+          label: payload.label,
+          value: payload.value,
         },
       };
     case AMORTIZATION_PERIOD:
       return {
         ...state,
-        [action.type]: {
-          ...state?.[action.type],
-          [action.payload.name]: action.payload.value,
+        [type]: {
+          ...state?.[type],
+          [payload.name]: payload.value,
         },
       };
     default:
