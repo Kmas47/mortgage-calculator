@@ -40,12 +40,10 @@ const initialPrePayment = {
 };
 
 export const MortgageCalculator = () => {
-  // @ts-ignore
   const [paymentPlan, dispatchPaymentPlan] = useReducer(
     reducer,
     initialPaymentPlan
   );
-  // @ts-ignore
   const [prePayment, dispatchPrepayment] = useReducer(
     reducer,
     initialPrePayment

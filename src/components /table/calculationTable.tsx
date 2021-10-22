@@ -85,7 +85,7 @@ export const MortgageCalculationTable = (props) => {
             <TableRow>
               {tableHeader.map((title) => (
                 <TableCell key={title}>
-                  <Typography>{title}</Typography>
+                  <Typography sx={{ fontWeight: 550 }}>{title}</Typography>
                 </TableCell>
               ))}
             </TableRow>
@@ -93,7 +93,7 @@ export const MortgageCalculationTable = (props) => {
           <TableBody>
             {tableBody.map((option) => (
               <TableRow key={option.title}>
-                <TableCell>
+                <TableCell sx={{ px: 1 }}>
                   <ToolTipLabel
                     toolTipTitle={option.tooltip}
                     title={option.title}

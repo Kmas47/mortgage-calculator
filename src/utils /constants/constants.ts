@@ -7,4 +7,5 @@ export const PRE_PAYMENT_AMOUNT = "prePaymentAmount";
 export const PRE_PAYMENT_FREQUENCY = "prePaymentFrequency";
 export const PRE_PAYMENT_START = "prePaymentStart";
 export const numOfMonths = 12;
+export const DARK_MODE = 'darkMode';
 

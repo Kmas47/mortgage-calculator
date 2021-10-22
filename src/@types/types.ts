@@ -29,3 +29,8 @@ export type ICalculationTableProps = {
   termTotalPayableAmount: number;
   totalAmountPayable: number;
 };
+
+export type IThemeContextType = {
+  darkMode: boolean;
+  setState: React.Dispatch<React.SetStateAction<boolean>>;
+};
