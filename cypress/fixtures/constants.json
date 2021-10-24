@@ -1,0 +1,13 @@
+{
+  "headerTitle": "Mortgage Calculator",
+  "changeTheme": "theme-toggle",
+  "mortgageAmount": "mortgage-amount",
+  "interestRate": "interest-rate",
+  "amortizationYears": "amortization-years",
+  "paymentFrequency": "payment-frequency",
+  "mortgageTerm": "mortgage-term",
+  "mortgagePrePaymentAmount": "mortgage-pre-payment-amount",
+  "mortgagePrePaymentFrequency": "mortgage-pre-payment-frequency",
+  "tableTitle": "Calculation Summary",
+  "darkMode": "darkMode"
+}
