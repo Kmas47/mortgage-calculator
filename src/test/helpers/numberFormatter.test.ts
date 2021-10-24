@@ -16,10 +16,9 @@ const _NaN = "$NaN";
 const CAD_NaN = "CA$NaN";
 
 const { locale } = Intl.DateTimeFormat().resolvedOptions();
-
 describe("Currency Formatter Func", () => {
   if (locale === "en-CA") {
-    it("should return formatted cad value", () => {
+    it("should return formatted currency value for CA", () => {
       expect(currencyFormatter(numberValue)).toBe(formattedNumberValue);
       expect(currencyFormatter(stringValue)).toBe(formattedStringValue);
       expect(currencyFormatter(floatNumber)).toBe(formattedFloatNumberValue);
@@ -29,17 +28,16 @@ describe("Currency Formatter Func", () => {
       expect(currencyFormatter(undefined)).toBe(_NaN);
       expect(currencyFormatter(null)).toBe(_NaN);
     });
-  } else {
-    it("should return formatted cad value for according to US", () => {
-        expect(currencyFormatter(numberValue)).toBe(formattedCADNumberValue);
-        expect(currencyFormatter(stringValue)).toBe(formattedCADStringValue);
-        expect(currencyFormatter(floatNumber)).toBe(formattedCADFloatNumberValue);
-      });
-    
-      it("should fail", () => {
-        expect(currencyFormatter(undefined)).toBe(CAD_NaN);
-        expect(currencyFormatter(null)).toBe(CAD_NaN);
-      });
+  } else if ("en-US") {
+    it("should return formatted CAD value", () => {
+      expect(currencyFormatter(numberValue)).toBe(formattedCADNumberValue);
+      expect(currencyFormatter(stringValue)).toBe(formattedCADStringValue);
+      expect(currencyFormatter(floatNumber)).toBe(formattedCADFloatNumberValue);
+    });
+
+    it("should fail", () => {
+      expect(currencyFormatter(undefined)).toBe(CAD_NaN);
+      expect(currencyFormatter(null)).toBe(CAD_NaN);
+    });
   }
-  
 });
