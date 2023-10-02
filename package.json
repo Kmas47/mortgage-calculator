@@ -48,6 +48,6 @@
   "devDependencies": {
     "@testing-library/cypress": "^8.0.1",
     "@types/testing-library__cypress": "^5.0.9",
-    "cypress": "^8.6.0"
+    "cypress": "^13.3.0"
   }
 }
